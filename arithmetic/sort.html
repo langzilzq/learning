@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS-Sort</title>
+</head>
+<script>
+    //为什么定义这么多个，因为splice和sort会改变原来的数组
+    const arr = [98, 42, 25, 54, 15, 3, 25, 72, 41, 10, 121];
+    const arr1 = [98, 42, 25, 54, 15, 3, 25, 72, 41, 10, 121];
+    const arr2 = [98, 42, 25, 54, 15, 3, 25, 72, 41, 10, 121];
+    const arr3 = [98, 42, 25, 54, 15, 3, 25, 72, 41, 10, 121];
+    const arr4 = [98, 42, 25, 54, 15, 3, 25, 72, 41, 10, 121];
+    //快排
+    jsQuickSort = array => {
+        if (array.length <= 1) {//空数组或者单数组
+            return array;
+        }
+        const pivot = array.splice(Math.floor(array.length / 2), 1)[0];//取数组中间的数
+        let l = [], r = [];//左右数组
+        array.forEach(item => {
+            if (item < pivot)
+                l.push(item);
+            else
+                r.push(item);
+        });
+        return jsQuickSort(l).concat(pivot, jsQuickSort(r));//数组拼接
+    };
+    //冒泡
+    jsBubbleSort = array => {
+        for (let i = 0; i < array.length - 1; i++) {// i<array.length-1? 因为只要对比到数组倒数第二个，最后一个不用比，一定是最大的
+            for (let j = i + 1; j < array.length; j++) {// j=i+1? 前面的已经排序过了,只要排后面的就行
+                if (array[j] < array[i]) {
+                    let tem = array[i]; //如果后面的数比前面的数小，则替换位置
+                    array[i] = array[j];
+                    array[j] = tem;
+                }
+            }
+        }
+        return array;
+    }
+    //归并
+    jsMergerSort = array => {
+        const len = array.length;
+        if (len > 1) {
+            const left = array.splice(0, Math.floor(len / 2)); //删除得到下标从0~Math.floor(len / 2)左边的数组，
+            // 右边剩下array，得到下标从0~Math.floor(len / 2)+1开始到末尾的数组
+            return merge(jsMergerSort(left), jsMergerSort(array));//里面采用递归
+        } else
+            return array;
+    };
+
+    merge = (left, right) => {//该函数与快排类似，但是仔细发现，每次left或者right都是要shift掉第一个元素，表示left或者right是会变化的，最后arr.concat，因为不知道left或者right其中一个哪个剩下元素，所以要将剩下的元素给加上
+        let arr = [];
+        while (left.length && right.length) {
+            if (left[0] < right[0])
+                arr.push(left.shift());
+            else
+                arr.push(right.shift());
+        }
+        return arr.concat(left, right);
+    }
+    //计数
+    addTwoNumbers = function (x) {
+        let n=0;
+        let l=x.toString();
+        if (parseInt(l[l.length-1])===0)
+        if (x>=0)
+           for (let i=0;i<l.length;i++)
+           {
+               n+=parseInt(l[i])*(l.length-i)*100
+           }
+    };
+    jsCountingSort = (arr, maxValue) => {
+        let bucket = new Array(maxValue + 1), sortedIndex = 0;
+        const arrLen = arr.length, bucketLen = maxValue + 1;
+
+        for (let i = 0; i < arrLen; i++) {
+            if (!bucket[arr[i]]) {
+                bucket[arr[i]] = 0;
+            }
+            bucket[arr[i]]++;
+        }
+
+        for (let j = 0; j < bucketLen; j++) {
+            while (bucket[j] > 0) {
+                arr[sortedIndex++] = j;
+                bucket[j]--;
+            }
+        }
+        return arr;
+    }
+
+
+</script>
+<body>
+<div>
+    数组：
+    <script>
+        document.write(arr);
+    </script>
+</div>
+<div>
+    <p>快速排序：</p>
+    <script>
+        document.write(jsQuickSort(arr));
+        document.write('<br/>');
+    </script>
+    <p>冒泡排序：</p>
+    <script>
+        document.write(jsBubbleSort(arr1));
+        document.write('<br/>');
+    </script>
+    <p>es6-sort()排序：</p>
+    <script>
+        document.write(arr2.sort((a, b) => {
+                return a - b
+            }
+        ));
+        document.write('<br/>');
+    </script>
+    <p>归并排序：</p>
+    <script>
+        document.write(jsMergerSort(arr3));
+        document.write('<br/>');
+    </script>
+    <p>计数排序：</p>
+    <script>
+        document.write(jsCountingSort(arr4, 121));
+        document.write('<br/>');
+    </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>debounce and throttle</title>
+</head>
+<body>
+<div id="content"
+     style="height:150px;line-height:150px;text-align:center;
+      color: #fff;background-color:#ccc;font-size:80px;">
+</div>
+<script>
+    /**
+     * 防抖：防止抖动，单位时间内事件触发会被重置，避免事件被误伤触发多次。代码实现重在清零 clearTimeout
+     * 节流：控制流量，单位时间内事件只能触发一次，如果服务器端的限流即 Rate Limit。代码实现重在开锁关锁 timer=timeout; timer=null
+     */
+    let num = 1;
+    let content = document.getElementById('content');
+
+    function count() {
+        content.innerHTML = num++
+    }
+    // content.onmousemove = count;
+    // content.onmousemove = debounce(count, 1000, true);
+    content.onmousemove = throttle(count, 1000);
+    /**
+     * @desc 函数防抖
+     * @param f function
+     * @param wait 延迟执行毫秒数
+     * @param immediate 是否立即执行
+     * 登录、发短信等按钮避免用户点击太快，以致于发送了多次请求，需要防抖
+     * 调整浏览器窗口大小时，resize 次数过于频繁，造成计算过多，此时需要一次到位，就用到了防抖
+     * 文本编辑器实时保存，当无任何更改操作一秒后进行保存
+     */
+    function debounce(f, wait, immediate = false) {
+        let timeout;
+        return () => {
+            if (timeout) clearTimeout(timeout);
+            if (immediate) {
+                let callNow = !timeout;
+                timeout = setTimeout(() => {
+                    timeout = null;
+                }, wait)
+                if (callNow) f(...arguments)
+            } else {
+                timeout = setTimeout(function () {
+                    f(...arguments)
+                }, wait);
+            }
+        }
+    }
+
+    /**
+     * @desc 函数节流
+     * @param f function
+     * @param wait 延迟执行毫秒数
+     * onscroll事件，每隔一秒计算一次位置信息等
+     浏览器播放事件，每个一秒计算一次进度信息等
+     input 框实时搜索并发送请求展示下拉列表，没隔一秒发送一次请求 (也可做防抖)
+     */
+    function throttle(f, wait) {
+        let timer
+        return (...args) => {
+            if (timer) {
+                return
+            }
+            timer = setTimeout(() => {
+                f(...args)
+                timer = null
+            }, wait)
+        }
+    }
+
+
+</script>
+</body>
+</html>
