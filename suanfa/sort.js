@@ -42,8 +42,8 @@ function quickSort1 (array, low = 0, hight = array.length - 1) {
 }
 
 const arr = [98, 42, 25, 54, 15, 3, 25, 72, 41, 10, 121];
-console.log(quickSort1(arr));
-console.log(quickSort(arr));
+// console.log(quickSort1(arr));
+// console.log(quickSort(arr));
 //螺旋数组
 function spiralArray (n) {
     let m = 0;
@@ -81,14 +81,40 @@ function spiralArray (n) {
 // console.log(spiralArray(3));
 // console.log(spiralArray(6));
 
-// const arr = [
+// const array = [
 //     { answer: 0, questionId: 6 },
 //     { answer: 1, questionId: 8 },
 //     { answer: 1, questionId: 7 },
-//   ];
-//   const newArr = [];
-//   arr.forEach((item) => {
-//     return newArr.push(Object.values(item));
-//   });
-//   console.log(newArr);
+// ];
+// const newArr = [];
+// array.forEach((item) => {
+//     return newArr.push(Object.keys(item));
+// });
+// console.log(newArr);
 // 函数柯理化
+let _fn = curry(function (a, b, c, d, e) {
+    console.log(a + b + c + d + e)
+});
+
+// _fn(1, 2, 3, 4, 5);  //15
+// _fn(1)(2)(3, 4, 5);  //15
+// _fn(1, 2)(3, 4)(5);  //15
+_fn(1)(2)(3)(4)(5);  //15
+function curry (fn, len = fn.length) {
+    return _curry.call(this, fn, len)
+}
+
+
+function _curry (fn, len, ...args) {
+    console.log(...args)
+    return function (...params) {
+        // console.log(params);
+        let _args = [...args, ...params];
+        // console.log(_args);
+        if (_args.length >= len) {
+            return fn.apply(this, _args);
+        } else {
+            return _curry.call(this, fn, len, ..._args)
+        }
+    }
+}

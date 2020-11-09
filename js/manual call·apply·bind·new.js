@@ -26,7 +26,7 @@ Function.prototype.myBind = function (context) {
     const self = this
     const args = [...arguments].slice(1)
     // 返回一个函数
-    return function F() {
+    return function F () {
         // 因为返回了一个函数，我们可以 new F()，所以需要判断
         if (this instanceof F) {
             return new self(...args, ...arguments)
@@ -34,7 +34,7 @@ Function.prototype.myBind = function (context) {
         return self.apply(context, args.concat(...arguments))
     }
 }
-function create() {
+function create () {
     // 创建一个空的对象
     let obj = {}
     // 获得构造函数
@@ -48,7 +48,7 @@ function create() {
 }
 const xm = {
     length: 16,
-    todo(time = '30min') {
+    todo (time = '30min') {
         return console.log(this.length + 'cm' + ' until ' + time)
     }
 }
@@ -58,5 +58,4 @@ const xh = {
 xm.todo()
 xm.todo.myCall(xh, '30sec')
 xm.todo.myApply(xh, ['30sec'])
-xm.todo.myBind(xh, '30sec')()
-
+xm.todo.myBind(xh, '30sec')

@@ -42,7 +42,7 @@ const c = a
 //     setTimeout(() => console.log(j), 0);
 // }
 
-function Foo() {
+function Foo () {
     Foo.a = function () {
         console.log(1)
     }
@@ -63,13 +63,13 @@ obj.a();
 Foo.a();
 
 
-async function async1() {
+async function async1 () {
     console.log('async1 start');
     await async2();
     console.log('async1 end');
 }
-
-async function async2() {
+// St as a2 p1 se  aE p2 set
+async function async2 () {
     console.log('async2');
 }
 
@@ -85,16 +85,16 @@ new Promise(function (resolve) {
     console.log('promise2');
 });
 console.log('script end');
-const name='hello';
-const  age=21;
+const name = 'hello';
+const age = 21;
 // console.log(Number.isNaN(name))
 // console.log(Number.isNaN(age))
 //
 // console.log(isNaN(name)) true
 // console.log(isNaN(age))
-[1,2,3,4].reduce((x,y)=>{
-  console.log(x,y)
-})
+// [1, 2, 3, 4].reduce((x, y) => {
+//     console.log(x, y)
+// })
 // 1 2
 // undefined 3z
 // undefined 4

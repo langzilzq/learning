@@ -1,5 +1,5 @@
 // function test(age,name,sex) {
-function test() {
+function test () {
     let s = '';
     for (let i = 0; i < arguments.length; i++) {
         s += arguments[i] + ' '

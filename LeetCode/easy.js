@@ -16,15 +16,15 @@ fan = number => {
 
 // 回文数
 isPalindrome = number => {
-//转字符
-//     let res = 0, num = Number(number);
-//     if (number >= 0) {
-//         res = number.toString().split("").reverse().join("")
-//         return num == res
-//     } else {
-//         return false
-//     }
-//    数组
+    //转字符
+    //     let res = 0, num = Number(number);
+    //     if (number >= 0) {
+    //         res = number.toString().split("").reverse().join("")
+    //         return num == res
+    //     } else {
+    //         return false
+    //     }
+    //    数组
     let res = false
     if (number >= 0) {
         const len = number.toString().length
@@ -99,6 +99,17 @@ romanToInt = str => {
 }
 // console.log(romanToInt(str))
 
+// 数字转罗马数字
+intToRoman = (num) => {
+    const t = ["", "M", "MM", "MMM"]
+    h = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"]
+    tens = ["", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"]
+    o = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
+    return t[Math.floor(num / 1000)] + h[Math.floor((num % 1000) / 100)] +
+        tens[Math.floor((num % 100) / 10)] + o[num % 10]
+};
+// console.log(intToRoman(3))
+
 //有效符号判断
 const str1 = "["
 isValid = str => {
@@ -131,7 +142,7 @@ isValid = str => {
 
 // 编写一个函数来查找字符串数组中的最长公共前缀。
 // 如果不存在公共前缀，返回空字符串 ""。
-const array = ["flow", "flower", "fl",'flowerr']
+const array = ["flow", "flower", "fl", 'flowerr']
 
 // longestCommonPrefix = arr => {
 //     if (arr.length === 1) {
@@ -191,7 +202,7 @@ longestCommonPrefix = str => {
     }
     return ans;
 }
-console.log(longestCommonPrefix(array))
+// console.log(longestCommonPrefix(array))
 
 //移除数组中val的值并返回新的长度
 
@@ -207,13 +218,11 @@ removeElement = (nums, val) => {
         nums.splice(numsIndex[i] - count, 1)
         count++
     }
-    console.log(nums.length)
     return nums.length
 }
 // removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2)
 
 strStr = (haystack, needle) => {
-    console.log(haystack.indexOf(needle))
     return haystack.indexOf(needle)
 }
 // strStr('hello','ll')
@@ -241,14 +250,13 @@ maxSubArray = nums => {
     // console.log(Math.max(...nums))
     // return Math.max(...nums)
 
-//    贪心
+    //    贪心
     let maxSum;
     let currentSum = maxSum = nums[0] > 0 ? 0 : nums[0]
     nums.forEach((item) => {
         currentSum = Math.max(item, currentSum + item)
         maxSum = Math.max(currentSum, maxSum)
     })
-    console.log(maxSum)
     return maxSum
 }
 // maxSubArray([-1])
@@ -271,7 +279,6 @@ lengthOfLastWord = s => {
 // console.log(lengthOfLastWord("456456a    "))
 
 plusOne = digits => {
-
     const len = digits.length;
     for (let i = len - 1; i >= 0; i--) {
         digits[i]++;
@@ -310,11 +317,11 @@ cutRope = number => {
     if (number === 3) return 2
     let m = number % 3
     switch (m) {
-        case 0 :
+        case 0:
             return Math.pow(3, (number / 3))
-        case 1 :
+        case 1:
             return Math.pow(3, Math.floor((number / 3 - 1))) * 4
-        case 2 :
+        case 2:
             return Math.pow(3, Math.floor(number / 3)) * 2
     }
 }
@@ -374,14 +381,14 @@ maxProfit = prices => {
     /**
      *@desc 暴力历遍
      */
-        // let max = 0
-        // for (let i = 0; i < prices.length - 1; i++) {
-        //     for (let j = i + 1; j < prices.length; j++) {
-        //         let p = prices[j] - prices[i]
-        //         if (p > max) max = p
-        //     }
-        // }
-        // return max
+    // let max = 0
+    // for (let i = 0; i < prices.length - 1; i++) {
+    //     for (let j = i + 1; j < prices.length; j++) {
+    //         let p = prices[j] - prices[i]
+    //         if (p > max) max = p
+    //     }
+    // }
+    // return max
     let total = 0
     for (let i = 0; i < prices.length - 1; i++) {
         if (prices[i + 1] > prices[i])
@@ -393,9 +400,232 @@ maxProfit = prices => {
 /**
  *@desc 斐波那契数列
  */
+let cache = []
 recursive = n => {
+    if (cache[n])
+        return cache[n]
     if (n <= 0) return 0;
     if (n === 1) return 1;
-    return recursive(n - 1) + recursive(n - 2);
+    const res = recursive(n - 1) + recursive(n - 2);
+    cache[n] = res
+    return res
 }
-console.log(recursive(10))
+// console.time('recursive')
+// console.log(recursive(40))
+// console.timeEnd('recursive')
+
+
+/**
+ * @desc 盛最多水的容器
+ * @param height array
+ */
+maxArea = (height) => {
+    if (!height.length) {
+        return 0
+    }
+    if (height.length === 1) {
+        return height[0]
+    }
+    let i = 0, j = height.length - 1, max = j * (Math.min(height[0], height[j]));
+    while (i < j) {
+        if (height[i] < height[j]) {
+            i++;
+            if (height[i - 1] < height[i]) {
+                max = Math.max(max, (j - i) * Math.min(height[i], height[j]));
+            }
+        } else {
+            j--;
+            if (height[1 + j] < height[j]) {
+                max = Math.max(max, (j - i) * Math.min(height[i], height[j]));
+            }
+        }
+    }
+    return max;
+};
+// console.time('max')
+// console.log(maxArea([1]))
+// console.timeEnd('max')
+myAtoi = str => {
+    const res = parseInt(str)
+    if (res && res < 2 ** 31 && res > (-2) ** 31) {
+        return res
+    } else if (res && res >= 2 ** 31) {
+        return 2 ** 31 - 1
+    } else if (res && res <= (-2) ** 31) {
+        return (-2) ** 31
+    }
+    return 0
+};
+// console.log(myAtoi(2147483648))
+
+// 中位数
+findMedianSortedArrays = (nums1, nums2) => {
+    const arr = [...nums1, ...nums2].sort((a, b) => {
+        return a - b
+    })
+    if (arr.length % 2) {
+        return arr[Math.floor(arr.length / 2)].toFixed(1)
+    } else {
+        return ((arr[arr.length / 2] + arr[arr.length / 2 - 1]) / 2).toFixed(1)
+    }
+};
+
+// console.log(findMedianSortedArrays([1, 2], [3, 4]))
+
+// 三数和最接近目标
+threeSumClosest = (nums, target) => {
+    nums.forEach(item => {
+
+    })
+};
+
+// 查找元素
+searchRange = function (nums, target, cache = 0) {
+    /**
+    * @desc 暴力
+    */
+    // let res = []
+    // nums.forEach((item, index) => {
+    //     if (item === target && res.length < 2) {
+    //         res.push(index)
+    //     }
+    //     if (item === target && res.length === 2) {
+    //         res.splice(1, 1, index)
+    //     }
+    // })
+    // if (res.length === 2) {
+    //     return res
+    // } else if (res.length === 1) {
+    //     res.push(...res)
+    //     return res
+    // }
+    // return [-1, -1]
+
+    /**
+     * @desc 暴力
+     */
+    // const mid = Math.floor(nums.length / 2)
+    // if (nums[mid] === target) {
+    //     let i = j = mid
+    //     while (nums[i - 1] === target) { i-- }
+    //     while (nums[j + 1] === target) { j++ }
+    //     return cache ? [i + cache, j + cache] : [i, j]
+    // } else if (nums[mid] > target) {
+    //     nums = nums.slice(0, mid)
+    //     return searchRange(nums, target)
+    // } else if (nums[mid] < target) {
+    //     nums = nums.slice(mid + 1)
+    //     cache = cache + mid + 1
+    //     return searchRange(nums, target, cache)
+    // }
+    // return [-1, -1]
+    /**
+     * @desc 二分
+     */
+    // let left = 0, right = nums.length - 1, mid;
+    // while (left <= right) {
+    //     mid = Math.floor((left + right) / 2);
+    //     if (nums[mid] === target) break;
+    //     if (nums[mid] > target) right = mid - 1;
+    //     else left = mid + 1;
+    // }
+    // if (left > right) return [-1, -1];
+    // let i = mid, j = mid
+    // while (nums[i] === nums[i - 1]) i--
+    // while (nums[j] === nums[j + 1]) j++
+    // return [i, j]
+
+    /**
+     * @desc Api
+     */
+    if (nums.indexOf(target) === -1) return [-1, -1]
+    let res = []
+    res.push(nums.indexOf(target))
+    res.push(nums.lastIndexOf(target))
+    return res
+};
+
+// console.log(searchRange([0, 0, 1, 1, 1, 2, 4, 4, 4, 4, 5, 5, 5, 6, 8, 8, 9, 9, 10, 10, 10], 5))
+// 2的幂次数
+isPowerOfTwo = function (n) {
+    let res = false
+    for (let i = 0; ; i++) {
+        if (2 ** i === n) {
+            res = true
+            break
+        }
+        if (2 ** i > n) {
+            break
+        }
+    }
+    return res
+};
+// console.log(isPowerOfTwo(218))
+
+majorityElement = function (nums) {
+    let obj = {}, res
+    if (nums.length === 1)
+        return nums[0]
+    nums.forEach(item => {
+        if (obj[item]) {
+            obj[item]++
+            if (obj[item] >= Math.ceil(nums.length / 2)) {
+                res = item
+            }
+        } else {
+            obj[item] = 1
+        }
+    })
+
+    return res
+};
+// console.log(majorityElement([-2147483648, 0, 0]))
+
+function getUrlParam (sUrl = "http://www.nowcoder.com?key=1&key=2&key=3&test=4#hehe key", sKey) {
+    const url = sUrl.slice(sUrl.indexOf('?') + 1)
+    const arr = url.slice(0, url.indexOf('#')).split("&")
+    if (sKey) {
+        const res = []
+        for (let i = 0; i < arr.length; i++) {
+            const temp = arr[i].split('=')
+            if (temp[0] === sKey)
+                res.push(temp[1])
+        }
+        if (res.length === 1) {
+            return res[0]
+        } else if (res.length === 0) {
+            return ''
+        } else {
+            return res
+        }
+    } else {
+        let obj = {}
+        for (let i = 0; i < arr.length; i++) {
+            const temp = arr[i].split('=')
+            if (obj[temp[0]]) {
+                obj[temp[0]] = [...obj[temp[0]], temp[1]]
+            } else {
+                obj[temp[0]] = temp[1]
+            }
+        }
+        return obj
+    }
+}
+// console.log(getUrlParam())
+
+Array.prototype.uniq = function () {
+    return [...new Set(this)]
+}
+// console.log([false, true, undefined, null, NaN, 0, 1, {}, {}, 'a', 'a', NaN].uniq())
+
+function duringNum (num) {
+    const res = []
+    for (let i = 1; i < num; i++) {
+        const str = i.toString().split('').reverse().join('')
+        if (str == i && i > 10)
+            res.push(str)
+    }
+    console.log(res.length)
+    return res
+}
+// console.log(duringNum(10000));
