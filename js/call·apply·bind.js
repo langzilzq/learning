@@ -48,7 +48,7 @@ xw.allow.call(xh)()
 // xw.say.apply(xh, ['上海', '我家'])
 // xw.say.bind(xh, '上海', '我家')()
 
-//apply
+// apply
 // const arr = [1, 5, 10, 20, 100]
 // const max = Math.max.apply('', arr)
 // console.log(max) //100
