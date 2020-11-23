@@ -1,3 +1,4 @@
+// 快手
 // 连续数组替换
 function arrReplace(arr) {
   const res = []
