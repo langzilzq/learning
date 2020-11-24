@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>BFC</title>
+    <!-- 如何创建BFC
+1、float的值不是none。
+2、position的值不是static或者relative。
+3、display的值是inline-block、table-cell、flex、table-caption或者inline-flex
+4、overflow的值不是visible -->
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    /* 1.利用BFC避免margin重叠。 */
+    .bfc {
+      overflow: hidden;
+    }
+    p {
+      background: yellow;
+      width: 200px;
+      line-height: 100px;
+      text-align: center;
+      margin: 30px;
+    }
+
+    /* 利用BFC来清除浮动 */
+    .father {
+      overflow: hidden;
+      background: aqua;
+      margin: 10px 0;
+    }
+    .item {
+      background: red;
+      float: left;
+      width: 100px;
+      height: 100px;
+      margin: 10px;
+    }
+
+    /* 自适应两栏布局 */
+    .left {
+      width: 100px;
+      height: 150px;
+      float: left;
+      background: rgb(139, 214, 78);
+      text-align: center;
+      line-height: 150px;
+      font-size: 20px;
+    }
+
+    .right {
+      height: 300px;
+      background: rgb(170, 54, 236);
+      text-align: center;
+      overflow: hidden;
+      line-height: 300px;
+      font-size: 40px;
+    }
+  </style>
+  <body>
+    <p>看看我的 margin是多少</p>
+    <div class="bfc">
+      <p>看看我的 margin是多少</p>
+    </div>
+
+    <div class="father">
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
+    <div class="left">LEFT</div>
+    <div class="right">RIGHT</div>
+  </body>
+</html>
