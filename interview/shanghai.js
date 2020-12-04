@@ -1,3 +1,5 @@
+// 小公司
+// 字符串替换 不能用字符串函数
 function strReplace(a, b, c) {
   if (
     !(typeof a === 'string' && typeof b === 'string' && typeof c === 'string')
