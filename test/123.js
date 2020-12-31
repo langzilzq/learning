@@ -79,11 +79,25 @@
 //     console.log(3);
 // })()
 
-function count(value = 0) {
-  return function () {
-    return value++
-  }
+// function count(value = 0) {
+// 	return function () {
+// 		return value++
+// 	}
+// }
+
+// const fun = count(10)
+// setInterval(() => console.log(fun()), 100)
+
+function thousands(num) {
+	const arr = []
+	let i = 0
+	while (num >= 1000) {
+		arr[i] = num % 1000
+		i++
+		num = Math.floor(num / 1000)
+	}
+	arr[i] = num
+	return arr.reverse().join(',')
 }
 
-const fun = count(10)
-setInterval(() => console.log(fun()), 100)
+console.log(thousands(123456789))
