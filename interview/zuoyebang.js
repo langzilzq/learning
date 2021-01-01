@@ -32,6 +32,8 @@ function thousands(num) {
 
 console.log(thousands(123456789))
 
+// 二叉树深度
+
 function TreeDepth(root) {
   if (root === null) return 0
   var left = TreeDepth(root.left)
