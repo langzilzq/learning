@@ -79,11 +79,28 @@
 //     console.log(3);
 // })()
 
-function count(value = 0) {
-	return function () {
-		return value++
-	}
+// function count(value = 0) {
+// 	return function () {
+// 		return value++
+// 	}
+// }
+
+// const fun = count(10)
+// setInterval(() => console.log(fun()), 100)
+
+ x=1
+const obj={
+  x:2,
+  say:function()
+  {
+    console.log(this.x)
+    return function(){
+      console.log(this.x)
+    }
+  }
 }
 
-const fun = count(10)
-setInterval(() => console.log(fun()), 100)
+const fun=obj.say
+fun()
+
+obj.say()()
