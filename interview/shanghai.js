@@ -26,25 +26,23 @@ function strReplace(a, b, c) {
 
 console.log(strReplace('ABCZXMA', '', 'c'))
 
-// function arrPart(a) {
-//   const result = []
-//   for (var i = 0; i < a.length; i++) {
-//     let t = []
-//     for (let j = i; j < a.length; j++) {
-//       t = [...t, a[j]]
-//       result.push(t)
-//     }
-//   }
-//   // result.push([])
-//   return result
-// }
+function arrPart(a) {
+  const result = []
+  for (var i = 0; i < a.length; i++) {
+    let t = []
+    for (let j = i; j < a.length; j++) {
+      t = [...t, a[j]]
+      result.push(t)
+    }
+  }
+  return result
+}
 
-// const arr = [1, 2, 4, 3]
+const arr = [1, 2, 4, 3]
 
-// const res = arrPart(arr)
-// console.log(res.includes(arr))
-// const arr1 = ['1', 2, 4, 3]
-// console.log(arr.toString() == arr1.toString())
-// console.log(JSON.stringify(arr1) === JSON.stringify(arr))
+const res = arrPart(arr)
+console.log(res.includes(arr))
+const arr1 = ['1', 2, 4, 3]
+console.log(arr.toString() == arr1.toString())
+console.log(JSON.stringify(arr1) === JSON.stringify(arr))
 
-// console.log()

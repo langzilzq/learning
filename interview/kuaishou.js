@@ -1,4 +1,3 @@
-// 快手
 // 连续数组替换
 function arrReplace(arr) {
   const res = []
@@ -36,3 +35,5 @@ arr.sort((a, b) => {
   }
   return a[0] - b[0]
 })
+
+console.log(arr)
