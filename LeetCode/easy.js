@@ -658,4 +658,136 @@ function decodeString(s) {
   return str
 }
 
-console.log(decodeString('100[leetcode]'))
+// 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function (s) {
+  let str = ''
+  let res = ''
+  for (const i of s) {
+    if (str.includes(i)) {
+      res = str.length > res.length ? str : res
+      const position = str.indexOf(i)
+      str = str.slice(position + 1)
+      str += i
+    } else {
+      str += i
+    }
+  }
+  return Math.max(res.length, str.length)
+}
+lengthOfLongestSubstring('abcabcbb')
+
+// 最长有效括号
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var longestValidParentheses = function (s) {
+  const res = []
+  const temp = []
+  for (const i in s) {
+    if (s[i] === '(') {
+      temp.push({ '(': Number(i) })
+    } else {
+      if (temp.length) {
+        const arr = temp.pop()
+        res.push(arr['('], Number(i))
+      }
+    }
+  }
+  res.sort((a, b) => {
+    return a - b
+  })
+  let start = res[0]
+  let end
+  let result = 0
+  res.forEach((item, index) => {
+    if (item + 1 !== res[index + 1]) {
+      end = item
+      const len = end - start + 1
+      result = len > result ? len : result
+      start = res[index + 1]
+    }
+  })
+  console.log(result)
+  return result
+}
+
+// longestValidParentheses('()(()')
+
+// 两数相除
+/**
+ * @param {number} dividend
+ * @param {number} divisor
+ * @return {number}
+ */
+var divide = function (dividend, divisor) {
+  const res = dividend / divisor
+  if (res > 2 ** 31 - 1 || res < (-2) ** 31) {
+    return 2 ** 31 - 1
+  }
+  return res > 0 ? Math.floor(res) : Math.ceil(res)
+}
+
+// console.log(divide(-2147483648, -1))
+
+// 只出现一次的数字
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var singleNumber = function (nums) {
+  const arr = []
+  nums.forEach((item) => {
+    if (arr.includes(item)) {
+      arr.splice(arr.indexOf(item), 1)
+    } else {
+      arr.push(item)
+    }
+  })
+  console.log(arr)
+  return arr[0]
+}
+
+// singleNumber([4, 1, 2, 1, 2])
+
+var singleNumber1 = function (nums) {
+  const arr = []
+  const res = []
+  nums.forEach((item) => {
+    if (arr.includes(item)) {
+      const resIndex = res.indexOf(item)
+      if (resIndex !== -1) res.splice(resIndex, 1)
+    } else {
+      arr.push(item)
+      res.push(item)
+    }
+  })
+  console.log(res)
+  return res[0]
+}
+
+// singleNumber1([2, 2, 3, 2])
+
+/**
+ * @param {string} s
+ * @param {string[]} wordDict
+ * @return {boolean}
+ */
+var wordBreak = function (s, wordDict) {
+  wordDict.forEach((item) => {
+    while (s.includes(item)) {
+      s = s.replace(item, '')
+    }
+  })
+  if (s) {
+    return false
+  }
+  return true
+}
+
+wordBreak('applepenapplepen', ['apple', 'pen'])
