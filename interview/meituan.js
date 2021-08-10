@@ -61,17 +61,17 @@ console.log(f instanceof Function) //true
 console.log(g instanceof Symbol) //flase
 
 function myInstanceof(left, right) {
-	let proto = left.__proto__
-	const protoType = right.prototype
-	while (true) {
-		if (proto === null) {
-			return false
-		}
-		if (proto == protoType) {
-			return true
-		}
-		proto = proto.__proto__
-	}
+  let proto = left.__proto__
+  const protoType = right.prototype
+  while (true) {
+    if (proto === null) {
+      return false
+    }
+    if (proto == protoType) {
+      return true
+    }
+    proto = proto.__proto__
+  }
 }
 console.log(myInstanceof(e, Array)) //true
 
@@ -97,10 +97,10 @@ console.log(date3.constructor === Function) //true
 // 3.讲空对象作为构造函数的上下文--改变this指向
 // 4.对构造函数的返回值进行判断，确保返回的是对象
 function myNew(fn, ...args) {
-	const obj = {}
-	obj.__proto__ = fn.prototype
-	const res = fn.apply(obj, args)
-	return typeof res === Object ? res : obj
+  const obj = {}
+  obj.__proto__ = fn.prototype
+  const res = fn.apply(obj, args)
+  return typeof res === Object ? res : obj
 }
 // 构造函数返回值的判断
 // 一般情况下构造函数没有返回值，但是作为函数，是可以有返回值的。
@@ -108,14 +108,14 @@ function myNew(fn, ...args) {
 // 先看两个例子：
 // 注意一下上面两个返回值的差异
 function Person(name) {
-	this.name = name
-	return 1 // return undefined/NaN/'string'/null
+  this.name = name
+  return 1 // return undefined/NaN/'string'/null
 }
 let me = new Person('快乐每一天')
 console.log(me) // { name:'快乐每一天' }
 function Person1(name) {
-	this.name = name
-	return { age: 12 }
+  this.name = name
+  return { age: 12 }
 }
 let me1 = new Person1('快乐每一天')
 console.log(me1) // { age:12 }
@@ -126,81 +126,81 @@ console.log(me1) // { age:12 }
 
 // promise实现retry
 const res = function () {
-	return new Promise((resolve, reject) => {
-		setTimeout(() => {
-			const res = Math.random(0, 1) * 100
-			if (res >= 70) {
-				resolve('done')
-			}
-			reject('noyet')
-		}, 1000)
-	})
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const res = Math.random(0, 1) * 100
+      if (res >= 70) {
+        resolve('done')
+      }
+      reject('noyet')
+    }, 1000)
+  })
 }
 res()
-	.then((res) => {
-		console.log(res)
-	})
-	.catch((err) => {
-		console.log(err)
-		retry(res, 3)
-	})
+  .then((res) => {
+    console.log(res)
+  })
+  .catch((err) => {
+    console.log(err)
+    retry(res, 3)
+  })
 
 function retry(promise, times) {
-	return new Promise(function (resolve, reject) {
-		promise()
-			.then((res) => {
-				console.log(res)
-				resolve
-			})
-			.catch(function (erro) {
-				console.log(`还有 ${times} 次尝试`)
-				if (0 == times) {
-					console.log(erro)
-					reject
-				} else {
-					times--
-					retry(promise, times)
-				}
-			})
-	})
+  return new Promise(function (resolve, reject) {
+    promise()
+      .then((res) => {
+        console.log(res)
+        resolve
+      })
+      .catch(function (erro) {
+        console.log(`还有 ${times} 次尝试`)
+        if (0 == times) {
+          console.log(erro)
+          reject
+        } else {
+          times--
+          retry(promise, times)
+        }
+      })
+  })
 }
 
 // react 计时器组件
 import React, { useState, useEffect } from 'react'
 
 const Time = (props) => {
-	const [time, setTime] = useState(props.count || 0)
+  const [time, setTime] = useState(props.count || 0)
 
-	useEffect(() => {
-		if (props.count) {
-			setTime(props.count)
-		}
-		let res = time
-		const interval = setInterval(() => {
-			if (!res) {
-				return clearInterval(interval)
-			}
-			res--
-			setTime(res)
-		}, 1000)
-	}, [props.count])
+  useEffect(() => {
+    if (props.count) {
+      setTime(props.count)
+    }
+    let res = time
+    const interval = setInterval(() => {
+      if (!res) {
+        return clearInterval(interval)
+      }
+      res--
+      setTime(res)
+    }, 1000)
+  }, [props.count])
 
-	return <div>{time}</div>
+  return <div>{time}</div>
 }
 //<Time count={10} />
 
 // this指向
 var a = 1
 var b = {
-	c: function () {
-		console.log(this.a)
-	},
-	d: () => {
-		console.log(this.a)
-	},
+  c: function () {
+    console.log(this.a)
+  },
+  d: () => {
+    console.log(this.a)
+  },
 }
 b.d.bind({
-	a: 2,
+  a: 2,
 })
 var fun = b.c
 fun() //undefined

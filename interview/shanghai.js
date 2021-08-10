@@ -1,9 +1,7 @@
 // 小公司
 // 字符串替换 不能用字符串函数
 function strReplace(a, b, c) {
-  if (
-    !(typeof a === 'string' && typeof b === 'string' && typeof c === 'string')
-  ) {
+  if (!(typeof a === 'string' && typeof b === 'string' && typeof c === 'string')) {
     return 0
   }
   if (b === '') return a
@@ -45,4 +43,3 @@ console.log(res.includes(arr))
 const arr1 = ['1', 2, 4, 3]
 console.log(arr.toString() == arr1.toString())
 console.log(JSON.stringify(arr1) === JSON.stringify(arr))
-

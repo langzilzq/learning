@@ -1,69 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>flex</title>
-</head>
-<style>
+  </head>
+  <style>
     .father {
-        display: flex;
-        width: 250px;
-        height: 250px;
-        background-color: #000;
-        align-items: center;
-        flex-wrap: wrap;
-        /*justify-content: center;*/
-        /*flex-direction: column;*/
+      display: flex;
+      width: 250px;
+      height: 250px;
+      background-color: #000;
+      align-items: center;
+      flex-wrap: wrap;
+      /*justify-content: center;*/
+      /*flex-direction: column;*/
     }
 
     .child1 {
-        background-color: aqua;
-        /* flex: 1; */
-        /*width: 50px;*/
-        width: 33.33%;
-        height: 50px;
+      background-color: aqua;
+      /* flex: 1; */
+      /*width: 50px;*/
+      width: 33.33%;
+      height: 50px;
     }
 
     .child2 {
-        background-color: red;
-        /*flex-grow: 1;*/
-        width: 33.33%;
-        height: 30px;
-        /* flex-basis: 50px; */
+      background-color: red;
+      /*flex-grow: 1;*/
+      width: 33.33%;
+      height: 30px;
+      /* flex-basis: 50px; */
     }
 
     .child3 {
-        background-color: blue;
-        /* flex-grow: 0.5; */
-        /*width: 50px;*/
-        width: 33.33%;
-        height: 50px;
+      background-color: blue;
+      /* flex-grow: 0.5; */
+      /*width: 50px;*/
+      width: 33.33%;
+      height: 50px;
     }
 
     .child4 {
-        background-color: blue;
-        /* flex-grow: 0.5; */
-        width: 33.33%;
-        /*width: 50px;*/
-        height: 55px;
+      background-color: blue;
+      /* flex-grow: 0.5; */
+      width: 33.33%;
+      /*width: 50px;*/
+      height: 55px;
     }
-</style>
+  </style>
 
-<body>
+  <body>
     <div class="father">
-        <div class="child1">
-        </div>
-        <div class="child2">
-
-        </div>
-        <div class="child3">
-
-        </div>
-        <div class="child4">
-
-        </div>
+      <div class="child1"></div>
+      <div class="child2"></div>
+      <div class="child3"></div>
+      <div class="child4"></div>
     </div>
-</body>
-
+  </body>
 </html>

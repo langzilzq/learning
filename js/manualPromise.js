@@ -1,5 +1,5 @@
 function Promi(executor) {
-  this.$$status = "pending"
+  this.$$status = 'pending'
   this.failCallBack = undefined
   this.successCallback = undefined
   this.error = undefined
@@ -13,7 +13,7 @@ function Promi(executor) {
       } else if (this._catch) {
         this._catch(e)
       } else {
-        throw new Error("un catch")
+        throw new Error('un catch')
       }
     }
   })
@@ -22,8 +22,8 @@ function Promi(executor) {
 Promi.prototype = {
   constructor: Promi,
   onResolve: function (params) {
-    if (this.$$status === "pending") {
-      this.$$status = "success"
+    if (this.$$status === 'pending') {
+      this.$$status = 'success'
       this.resolve(params)
     }
   },
@@ -36,7 +36,7 @@ Promi.prototype = {
   defer: function (callBack) {
     let result
     let defer = this.callBackDefer.success
-    if (this.$$status === "fail" && !this.catchErrorFunc) {
+    if (this.$$status === 'fail' && !this.catchErrorFunc) {
       defer = this.callBackDefer.fail
     }
     try {
@@ -47,13 +47,13 @@ Promi.prototype = {
     }
     if (result && result instanceof Promi) {
       result.then(this.callBackDefer.success, this.callBackDefer.fail)
-      return ""
+      return ''
     }
     defer(result)
   },
   onReject: function (error) {
-    if (this.$$status === "pending") {
-      this.$$status = "fail"
+    if (this.$$status === 'pending') {
+      this.$$status = 'fail'
       this.reject(error)
     }
   },
@@ -68,7 +68,7 @@ Promi.prototype = {
       _catch(error)
     } else {
       setTimeout((_) => {
-        throw new Error("un catch promise")
+        throw new Error('un catch promise')
       }, 0)
     }
   },
@@ -96,16 +96,16 @@ Promi.prototype = {
 
 new Promi((resolve, reject) => {
   setTimeout(() => {
-    resolve("你好")
+    resolve('你好')
   })
 })
   .then((res) => {
-    console.log("1:" + res)
-    return "第一个then"
+    console.log('1:' + res)
+    return '第一个then'
   })
   .then((res) => {
     return new Promi((res) => {
-      setTimeout((_) => res("第二个then"), 0)
+      setTimeout((_) => res('第二个then'), 0)
     })
   })
   .then((res) => {
@@ -114,7 +114,7 @@ new Promi((resolve, reject) => {
   .then((res) => {
     return new Promi((suc, fail) => {
       setTimeout((_) => {
-        fail("then失败")
+        fail('then失败')
       }, 400)
     })
   })
@@ -125,7 +125,7 @@ new Promi((resolve, reject) => {
     (_) => {},
     () => {
       return new Promi(function (res, rej) {
-        setTimeout((_) => rej("promise reject"), 0)
+        setTimeout((_) => rej('promise reject'), 0)
       })
     }
   )
@@ -135,7 +135,7 @@ new Promi((resolve, reject) => {
     (_) => {},
     (rej) => {
       console.log(rej)
-      return rej + "处理完成"
+      return rej + '处理完成'
     }
   )
   .then((res) => {

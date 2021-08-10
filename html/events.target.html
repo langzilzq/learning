@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Title</title>
-</head>
-<body>
-<div onclick="clickFunc(event)" style="text-align:center;margin:15px;border:1px solid red;border-radius:3px;">    
-    <div style="margin:25px;border:1px solid royalblue;border-radius:3px;">        
-        <div style="margin:25px;border:1px solid royalblue;border-radius:3px;">          
-            <button style="margin:10px">             Button          
-            </button>
+  </head>
+  <body>
+    <div onclick="clickFunc(event)" style="text-align: center; margin: 15px; border: 1px solid red; border-radius: 3px">
+      <div style="margin: 25px; border: 1px solid royalblue; border-radius: 3px">
+        <div style="margin: 25px; border: 1px solid royalblue; border-radius: 3px">
+          <button style="margin: 10px" data-val="123" ="">Button</button>
         </div>
+      </div>
     </div>
-</div>
-</body>
-<script>
+  </body>
+  <script>
     function clickFunc(event) {
-        console.log(event.target);
+      console.log(event.target.dataset)
     }
-</script>
+  </script>
 </html>

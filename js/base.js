@@ -49,3 +49,26 @@ for (var i = 1; i <= 5; i++) {
     i
   )
 }
+
+var a = { value: 1 },
+  b = { value: 2 }
+foo = (obj) => {
+  obj.value = 2
+  return obj
+}
+bar = (obj) => {
+  obj = { value: 1 }
+  return obj
+}
+console.log(foo(a))
+console.log(bar(b))
+console.log(a)
+console.log(b)
+
+function count(value = 0) {
+  return function () {
+    return value++
+  }
+}
+const fun = count(10)
+setInterval(() => console.log(fun()), 1000)

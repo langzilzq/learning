@@ -105,12 +105,7 @@ intToRoman = (num) => {
   h = ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM']
   tens = ['', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC']
   o = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX']
-  return (
-    t[Math.floor(num / 1000)] +
-    h[Math.floor((num % 1000) / 100)] +
-    tens[Math.floor((num % 100) / 10)] +
-    o[num % 10]
-  )
+  return t[Math.floor(num / 1000)] + h[Math.floor((num % 1000) / 100)] + tens[Math.floor((num % 100) / 10)] + o[num % 10]
 }
 // console.log(intToRoman(3))
 
@@ -576,10 +571,7 @@ majorityElement = function (nums) {
 }
 // console.log(majorityElement([-2147483648, 0, 0]))
 
-function getUrlParam(
-  sUrl = 'http://www.nowcoder.com?key=1&key=2&key=3&test=4#hehe key',
-  sKey
-) {
+function getUrlParam(sUrl = 'http://www.nowcoder.com?key=1&key=2&key=3&test=4#hehe key', sKey) {
   const url = sUrl.slice(sUrl.indexOf('?') + 1)
   const arr = url.slice(0, url.indexOf('#')).split('&')
   if (sKey) {

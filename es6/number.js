@@ -1,12 +1,12 @@
 // Number.isFinite()用来检查一个数值是否为有限的（finite），即不是Infinity。
-Number.isFinite(15); // true
-Number.isFinite(0.8); // true
-Number.isFinite(NaN); // false
-Number.isFinite(Infinity); // false
-Number.isFinite(-Infinity); // false
-Number.isFinite('foo'); // false
-Number.isFinite('15'); // false
-Number.isFinite(true); // false
+Number.isFinite(15) // true
+Number.isFinite(0.8) // true
+Number.isFinite(NaN) // false
+Number.isFinite(Infinity) // false
+Number.isFinite(-Infinity) // false
+Number.isFinite('foo') // false
+Number.isFinite('15') // false
+Number.isFinite(true) // false
 
 // Number.isNaN()用来检查一个值是否为NaN。
 Number.isNaN(NaN) // true
@@ -37,11 +37,10 @@ Math.pow(2, 53) === Math.pow(2, 53) + 1 // true
 
 Number.isSafeInteger(Number.MAX_SAFE_INTEGER) // true
 
-Math.trunc('4.2')//4
+Math.trunc('4.2') //4
 
 Math.sign(5) //1
 Math.sign(-1) //-1
 
-Math.sqrt(4)//2
-Math.cbrt(8)// 2
-
+Math.sqrt(4) //2
+Math.cbrt(8) // 2

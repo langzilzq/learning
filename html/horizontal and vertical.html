@@ -1,35 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-
     <style>
-        .container {
-            width: 200px;
-            height: 200px;
-            background: aqua;
-        }
+      .container {
+        width: 200px;
+        height: 200px;
+        background: aqua;
+      }
+      .child {
+        width: 100px;
+        height: 100px;
+        background: palevioletred;
+      }
+      /* 水平垂直居中 */
 
-        .child {
-            width: 100px;
-            height: 100px;
-            background: palevioletred;
-        }
-
-        /* 水平垂直居中 */
-
-        /* one */
-        /* .container {
+      /* one */
+      /* .container {
             display: flex;
             align-items: center;
             justify-content: center;
         } */
 
-        /* two */
-        /* .container {
+      /* two */
+      /* .container {
             position: relative;
         }
         .child {
@@ -39,8 +35,8 @@
             transform: translate(-50%, -50%);
         } */
 
-        /* three */
-        /* .container {
+      /* three */
+      /* .container {
             position: relative;
         }
 
@@ -53,8 +49,8 @@
             margin: auto;
         } */
 
-        /* four */
-        /* .container {
+      /* four */
+      /* .container {
             display: table-cell;
             text-align: center;
             vertical-align: middle;
@@ -64,12 +60,11 @@
             display: inline-block;
         } */
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="container">
-        <div class="child"></div>
+      <div class="child"></div>
     </div>
-</body>
-
+  </body>
 </html>

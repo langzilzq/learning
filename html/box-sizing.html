@@ -1,68 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>box-sizing</title>
     <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-        }
-
-        .content-box {
-            box-sizing: content-box;
-            width: 500px;
-            height: 100px;
-            display: flex;
-            padding: 15px;
-            border: 15px solid blue;
-            align-items: center;
-        }
-
-        .border-box {
-            width: 500px;
-            height: 100px;
-            margin: 30px 0 0;
-            box-sizing: border-box;
-            display: flex;
-            padding: 15px;
-            border: 15px solid blue;
-            align-items: center;
-        }
-
-        .child1 {
-            width: 50%;
-            height: 100%;
-            background-color: bisque;
-            margin: 10px;
-
-        }
-
-        .child2 {
-            width: 50%;
-            height: 100%;
-            margin: 10px;
-            background-color: aqua;
-        }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .content-box {
+        box-sizing: content-box;
+        width: 500px;
+        height: 100px;
+        display: flex;
+        padding: 15px;
+        border: 15px solid blue;
+        align-items: center;
+      }
+      .border-box {
+        width: 500px;
+        height: 100px;
+        margin: 30px 0 0;
+        box-sizing: border-box;
+        display: flex;
+        padding: 15px;
+        border: 15px solid blue;
+        align-items: center;
+      }
+      .child1 {
+        width: 50%;
+        height: 100%;
+        background-color: bisque;
+        margin: 10px;
+      }
+      .child2 {
+        width: 50%;
+        height: 100%;
+        margin: 10px;
+        background-color: aqua;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="content-box">
-        <div class="child1">
-        </div>
-        <div class="child2">
-        </div>
+      <div class="child1"></div>
+      <div class="child2"></div>
     </div>
     <div class="border-box">
-        <div class="child1">
-        </div>
-        <div class="child2">
-        </div>
+      <div class="child1"></div>
+      <div class="child2"></div>
     </div>
-</body>
-
+  </body>
 </html>

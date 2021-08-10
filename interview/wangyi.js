@@ -64,3 +64,26 @@ function throttle(f, wait) {
     }, wait)
   }
 }
+
+function thousands(num) {
+  const arr = []
+  let i = 0
+  while (num >= 1000) {
+    arr[i] = num % 1000
+    i++
+    num = Math.floor(num / 1000)
+  }
+  arr[i] = num
+  return arr.reverse().join(',')
+}
+
+console.log(thousands(123456789))
+
+// 二叉树深度
+
+function TreeDepth(root) {
+  if (root === null) return 0
+  var left = TreeDepth(root.left)
+  var right = TreeDepth(root.right)
+  return Math.max(left, right) + 1
+}
