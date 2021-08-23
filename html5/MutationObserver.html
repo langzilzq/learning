@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MutationObserver</title>
+  </head>
+  <body>
+    <div id="root">
+      <span id="count">0</span>
+    </div>
+  </body>
+  <script>
+    const root = document.getElementById('root')
+    const count = document.getElementById('count')
+    let countNum = 0
+    setInterval(() => {
+      count.innerText = ++countNum
+    }, 1000)
+    const countOberver = new MutationObserver(records => {
+      for (let node of records) {
+        // todo
+        console.log(node?.type)
+        console.log(node?.target?.innerText)
+      }
+    })
+    countOberver.observe(root, { childList: true, subtree: true })
+    window.onunload(() => countOberver.disconnect())
+  </script>
+</html>
