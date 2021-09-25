@@ -1,6 +1,6 @@
 //数字反转
 const number = 1001
-fan = (number) => {
+fan = number => {
   let res = 0
   if (number > 0) {
     res = parseInt(number.toString().split('').reverse().join(''))
@@ -14,7 +14,7 @@ fan = (number) => {
 // console.log(fan(number))
 
 // 回文数
-isPalindrome = (number) => {
+isPalindrome = number => {
   //转字符
   //     let res = 0, num = Number(number);
   //     if (number >= 0) {
@@ -49,7 +49,7 @@ isPalindrome = (number) => {
 
 //罗马数字转数字
 const str = 'IV'
-romanToInt = (str) => {
+romanToInt = str => {
   //array
   // const len = str.length
   // const strArr = ['I', 'V', 'X', 'L', 'C', 'D', 'M'], strValue = [1, 5, 10, 50, 100, 500, 1000];
@@ -100,7 +100,7 @@ romanToInt = (str) => {
 // console.log(romanToInt(str))
 
 // 数字转罗马数字
-intToRoman = (num) => {
+intToRoman = num => {
   const t = ['', 'M', 'MM', 'MMM']
   h = ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM']
   tens = ['', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC']
@@ -111,7 +111,7 @@ intToRoman = (num) => {
 
 //有效符号判断
 const str1 = '['
-isValid = (str) => {
+isValid = str => {
   const len = str.length
   if (len % 2) {
     return false
@@ -185,7 +185,7 @@ const array = ['flow', 'flower', 'fl', 'flowerr']
 //     return value
 // }
 // longestCommonPrefix(array)
-longestCommonPrefix = (str) => {
+longestCommonPrefix = str => {
   if (str.length === 0) return ''
   let ans = str[0]
   for (let i = 1; i < str.length; i++) {
@@ -226,13 +226,13 @@ strStr = (haystack, needle) => {
 
 //元素插入
 searchInsert = (nums, target) => {
-  const index = nums.findIndex((item) => {
+  const index = nums.findIndex(item => {
     return item >= target
   })
   return index === -1 ? nums.length : index
 }
 //最大子序列和
-maxSubArray = (nums) => {
+maxSubArray = nums => {
   //动态规划
   // let sum = 0
   // nums.forEach((item, index) => {
@@ -249,15 +249,16 @@ maxSubArray = (nums) => {
   //    贪心
   let maxSum
   let currentSum = (maxSum = nums[0] > 0 ? 0 : nums[0])
-  nums.forEach((item) => {
+  nums.forEach(item => {
     currentSum = Math.max(item, currentSum + item)
     maxSum = Math.max(currentSum, maxSum)
   })
   return maxSum
 }
 // maxSubArray([-1])
+
 //最后一个单词的长度
-lengthOfLastWord = (s) => {
+lengthOfLastWord = s => {
   let end = s.length - 1
   for (; end > 0; end--) {
     if (s[end] !== ' ') break
@@ -272,24 +273,24 @@ lengthOfLastWord = (s) => {
 }
 // console.log(lengthOfLastWord("456456a    "))
 
-plusOne = (digits) => {
+plusOne = digits => {
   const len = digits.length
   for (let i = len - 1; i >= 0; i--) {
     digits[i]++
     digits[i] %= 10
     if (digits[i] !== 0) return digits
   }
-  digits = [...Array(len + 1)].map((_) => 0)
+  digits = [...Array(len + 1)].map(_ => 0)
   digits[0] = 1
   return digits
 }
 // console.log(plusOne([6, 1, 4, 5, 3, 9, 0, 1, 9, 5, 1, 8, 6, 7, 0, 5, 5, 4, 3]))
 
-mySqrt = (x) => {
+mySqrt = x => {
   return Math.floor(Math.sqrt(x))
 }
 // console.log(mySqrt(8))
-climbStairs = (n) => {
+climbStairs = n => {
   if (n === 0 || n === 1) return n
   let a = 1,
     b = 1,
@@ -304,7 +305,7 @@ climbStairs = (n) => {
 
 // console.log(climbStairs(8))
 //剪绳子
-cutRope = (number) => {
+cutRope = number => {
   if (number <= 0) return 0
   if (number === 1 || number === 2) return 1
   if (number === 3) return 2
@@ -326,7 +327,7 @@ cutRope = (number) => {
  *@param n number
  */
 
-generate = (n) => {
+generate = n => {
   const arr = []
   for (let i = 0; i <= n; i++) {
     const arr1 = []
@@ -356,7 +357,7 @@ generate = (n) => {
  解释: 在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。
  注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格；同时，你不能在买入前卖出股票。
  */
-maxProfit = (prices) => {
+maxProfit = prices => {
   if (!prices.length) {
     return 0
   }
@@ -393,7 +394,7 @@ maxProfit = (prices) => {
  *@desc 斐波那契数列
  */
 let cache = []
-recursive = (n) => {
+recursive = n => {
   if (cache[n]) return cache[n]
   if (n <= 0) return 0
   if (n === 1) return 1
@@ -409,7 +410,7 @@ recursive = (n) => {
  * @desc 盛最多水的容器
  * @param height array
  */
-maxArea = (height) => {
+maxArea = height => {
   if (!height.length) {
     return 0
   }
@@ -437,7 +438,7 @@ maxArea = (height) => {
 // console.time('max')
 // console.log(maxArea([1]))
 // console.timeEnd('max')
-myAtoi = (str) => {
+myAtoi = str => {
   const res = parseInt(str)
   if (res && res < 2 ** 31 && res > (-2) ** 31) {
     return res
@@ -466,7 +467,7 @@ findMedianSortedArrays = (nums1, nums2) => {
 
 // 三数和最接近目标
 threeSumClosest = (nums, target) => {
-  nums.forEach((item) => {})
+  nums.forEach(item => {})
 }
 
 // 查找元素
@@ -556,7 +557,7 @@ majorityElement = function (nums) {
   let obj = {},
     res
   if (nums.length === 1) return nums[0]
-  nums.forEach((item) => {
+  nums.forEach(item => {
     if (obj[item]) {
       obj[item]++
       if (obj[item] >= Math.ceil(nums.length / 2)) {
@@ -734,7 +735,7 @@ var divide = function (dividend, divisor) {
  */
 var singleNumber = function (nums) {
   const arr = []
-  nums.forEach((item) => {
+  nums.forEach(item => {
     if (arr.includes(item)) {
       arr.splice(arr.indexOf(item), 1)
     } else {
@@ -750,7 +751,7 @@ var singleNumber = function (nums) {
 var singleNumber1 = function (nums) {
   const arr = []
   const res = []
-  nums.forEach((item) => {
+  nums.forEach(item => {
     if (arr.includes(item)) {
       const resIndex = res.indexOf(item)
       if (resIndex !== -1) res.splice(resIndex, 1)
@@ -771,7 +772,7 @@ var singleNumber1 = function (nums) {
  * @return {boolean}
  */
 var wordBreak = function (s, wordDict) {
-  wordDict.forEach((item) => {
+  wordDict.forEach(item => {
     while (s.includes(item)) {
       s = s.replace(item, '')
     }
@@ -783,3 +784,17 @@ var wordBreak = function (s, wordDict) {
 }
 
 wordBreak('applepenapplepen', ['apple', 'pen'])
+
+// 反转链表
+var reverseList = function (head) {
+  if (!head) return null
+  let cur = head,
+    pre = null
+  while (cur) {
+    let next = cur.next
+    cur.next = pre
+    pre = cur
+    cur = next
+  }
+  return pre
+}
