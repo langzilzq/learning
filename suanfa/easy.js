@@ -47,9 +47,7 @@ function TreeDepth(pRoot) {
   // write code here
   if (pRoot === null) return 0
   const left = TreeDepth(pRoot.left)
-  const temp = left
   const right = TreeDepth(pRoot.right)
-
   return Math.max(left, right) + 1
 }
 
@@ -74,20 +72,6 @@ function FindNumsAppearOnce(array) {
 
 // const arr = [1, 2, 2, 4, 4, 5];
 // console.log(FindNumsAppearOnce(arr))
-
-//一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。
-function jumpFloorII(number) {
-  if (number === 1) {
-    return 1
-  }
-  if (number === 2) {
-    return 2
-  }
-
-  return 2 * jumpFloorII(number - 1)
-}
-
-// console.log(jumpFloorII(3))
 
 //求1+2+3+...+n，要求不能使用乘除法、for、while、if、else、switch、case等关键字及条件判断语句（A?B:C）。
 function Sum_Solution(n) {
