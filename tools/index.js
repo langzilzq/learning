@@ -11,5 +11,17 @@ function rgbaToHexadecimal(color) {
   return '#' + ('0' + r.toString(16)).slice(-2) + ('0' + g.toString(16)).slice(-2) + ('0' + b.toString(16)).slice(-2)
 }
 
-console.log(rgbaToHexadecimal('rgba(255,232,186,0.4)'))
-console.log(rgbaToHexadecimal('rgba(10,200,210,0.2)'))
+console.log(rgbaToHexadecimal('rgba(255, 255, 255, 0.1)'))
+
+function RGBA2RGB(rgba_color) {
+  //注：rgba_color的格式为rgba(0,0,0,0.1)
+  var BGcolur = 1
+  var arr = rgba_color.split('(')[1].split(')')[0].split(',')
+  var a = arr[3]
+  var r = BGcolur * (1 - a) + arr[0] * a
+  var g = BGcolur * (1 - a) + arr[1] * a
+  var b = BGcolur * (1 - a) + arr[2] * a
+  return 'rgb(' + r + ',' + g + ',' + b + ')'
+}
+
+console.log(RGBA2RGB('rgba(255, 255, 255, 0.1)'))
