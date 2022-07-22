@@ -1,18 +1,3 @@
-function rgbaToHexadecimal(color) {
-  const values = color
-    .replace(/rgba?\(/, '')
-    .replace(/\)/, '')
-    .replace(/[\s+]/g, '')
-    .split(',')
-  const a = parseFloat(values[3] || 1),
-    r = Math.floor(a * parseInt(values[0]) + (1 - a) * 255),
-    g = Math.floor(a * parseInt(values[1]) + (1 - a) * 255),
-    b = Math.floor(a * parseInt(values[2]) + (1 - a) * 255)
-  return '#' + ('0' + r.toString(16)).slice(-2) + ('0' + g.toString(16)).slice(-2) + ('0' + b.toString(16)).slice(-2)
-}
-
-console.log(rgbaToHexadecimal('rgba(255, 255, 255, 0.1)'))
-
 function RGBA2RGB(rgba_color) {
   //注：rgba_color的格式为rgba(0,0,0,0.1)
   var BGcolur = 1
@@ -24,4 +9,28 @@ function RGBA2RGB(rgba_color) {
   return 'rgb(' + r + ',' + g + ',' + b + ')'
 }
 
-console.log(RGBA2RGB('rgba(255, 255, 255, 0.1)'))
+function set16ToRgb(str) {
+  var reg = /^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/
+  if (!reg.test(str)) {
+    return
+  }
+  let newStr = str.toLowerCase().replace(/\#/g, '')
+  let len = newStr.length
+  if (len == 3) {
+    let t = ''
+    for (var i = 0; i < len; i++) {
+      t += newStr.slice(i, i + 1).concat(newStr.slice(i, i + 1))
+    }
+    newStr = t
+  }
+  let arr = [] //将字符串分隔，两个两个的分隔
+  for (var i = 0; i < 6; i = i + 2) {
+    let s = newStr.slice(i, i + 2)
+    arr.push(parseInt('0x' + s))
+  }
+  return 'rgb(' + arr.join(',') + ')'
+}
+
+console.log(set16ToRgb('#2DBBD4'))
+
+console.log(RGBA2RGB('rgba(45,187,212, 0.13)'))
