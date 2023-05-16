@@ -10,11 +10,9 @@ class LRUCache {
       const val = this.cache.get(key)
       this.cache.delete(key)
       this.cache.set(key, val)
-      console.log(val)
       return val
     }
-    console.log(-1)
-    return -1
+    return null
   }
   set(key, value) {
     const hasKey = this.cache.has(key)

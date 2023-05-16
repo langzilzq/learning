@@ -46,6 +46,21 @@ class SingleList {
 
     return result
   }
+
+  reverseList() {
+    let res = null
+    let next = null
+    let current = this.head
+
+    while (current) {
+      next = current.next
+      current.next = res
+      res = current
+      current = next
+    }
+
+    this.head = res
+  }
   getSize() {
     return this.size
   }
@@ -64,20 +79,5 @@ for (let i of arr) {
 // myList.unshift(1)
 
 console.log(myList.display())
-
-function reverseList(list) {
-  let curr = list.head
-  let prev = null
-  let next = null
-
-  while (curr) {
-    next = curr.next
-    curr.next = prev
-    prev = curr
-    curr = next
-  }
-
-  list.head = prev
-}
-reverseList(myList)
+myList.reverseList()
 console.log(myList.display())
