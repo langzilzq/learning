@@ -1,5 +1,5 @@
 // second round
-function stringify(obj) {
+function myStringigy(obj) {
   switch (typeof obj) {
     case 'string':
       return `"${obj}"`
